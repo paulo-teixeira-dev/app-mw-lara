@@ -14,8 +14,13 @@ return new class extends Migration
 
     public function up()
     {
-        Schema::table('eletrodomesticos', function (Blueprint $table) {
-            $table->foreign('marca_id')->references('id')->on('marcas');
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
+        });
+
+        Schema::table('pedido_produto', function (Blueprint $table) {
+            $table->foreign('pedido_id')->references('id')->on('pedidos');
+            $table->foreign('produto_id')->references('id')->on('produtos');
         });
     }
 
@@ -26,8 +31,13 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('eletrodomesticos', function (Blueprint $table) {
-            $table->dropForeign(['marca_id']);
+        Schema::table('pedidos', function (Blueprint $table) {
+            $table->dropForeign(['user_id']);
+        });
+
+        Schema::table('pedido_produto', function (Blueprint $table) {
+            $table->dropForeign(['pedido_id']);
+            $table->dropForeign(['produto_id']);
         });
     }
 };

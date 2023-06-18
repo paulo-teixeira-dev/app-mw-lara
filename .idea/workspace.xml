@@ -154,7 +154,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app/Models" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -164,6 +164,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="\\wsl$\Ubuntu\home\pauloteixeira\dev-env\github-paulo-teixeira\app-mw-lara\src\app\Models" />
       <recent name="\\wsl$\Ubuntu\home\pauloteixeira\dev-env\github-paulo-teixeira\app-plan-eletro\src\app\Repositories" />
       <recent name="\\wsl$\Ubuntu\home\pauloteixeira\dev-env\github-paulo-teixeira\app-plan-eletro\src\app\Interfaces" />
       <recent name="\\wsl$\Ubuntu\home\pauloteixeira\dev-env\github-paulo-teixeira\app-plan-eletro\src\app\Http\Controllers" />
@@ -189,6 +190,7 @@
       <workItem from="1686837589715" duration="841000" />
       <workItem from="1686838535884" duration="3297000" />
       <workItem from="1687118956424" duration="1566000" />
+      <workItem from="1687122198695" duration="2407000" />
     </task>
     <servers />
   </component>

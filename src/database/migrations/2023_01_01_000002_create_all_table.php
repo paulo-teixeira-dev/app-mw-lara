@@ -8,9 +8,8 @@ return new class extends Migration {
     public function up()
     {
 
-        /**eletrodomesticos**/
-        if (!Schema::hasTable('eletrodomesticos')) {
-            Schema::create('eletrodomesticos', function (Blueprint $table) {
+        if (!Schema::hasTable('users')) {
+            Schema::create('users', function (Blueprint $table) {
                 //ESTRUTURA TABELA
                 $table->engine = 'InnoDB';
                 $table->charset = 'utf8mb4';
@@ -19,15 +18,16 @@ return new class extends Migration {
                 //COLUNAS
                 $table->id();
                 $table->string('nome', 100);
-                $table->text('descricao');
-                $table->integer('tensao');
-                $table->unsignedBigInteger('marca_id', false);
+                $table->string('sobrenome', 100);
+                $table->string('email')->unique();
+                $table->string('password');
+                $table->rememberToken();
+                $table->timestamps();
             });
         }
 
-        /**marcas**/
-        if (!Schema::hasTable('marcas')) {
-            Schema::create('marcas', function (Blueprint $table) {
+        if (!Schema::hasTable('produtos')) {
+            Schema::create('produtos', function (Blueprint $table) {
                 //ESTRUTURA TABELA
                 $table->engine = 'InnoDB';
                 $table->charset = 'utf8mb4';
@@ -35,14 +35,49 @@ return new class extends Migration {
 
                 //COLUNAS
                 $table->id();
-                $table->string('nome')->unique();
+                $table->string('nome', 100);
+                $table->integer('preco');
+                $table->integer('estoque');
+                $table->timestamps();
+            });
+        }
+
+        if (!Schema::hasTable('pedidos')) {
+            Schema::create('pedidos', function (Blueprint $table) {
+                //ESTRUTURA TABELA
+                $table->engine = 'InnoDB';
+                $table->charset = 'utf8mb4';
+                $table->collation = 'utf8mb4_general_ci';
+
+                //COLUNAS
+                $table->id();
+                $table->unsignedBigInteger('user_id');
+                $table->boolean('status');
+                $table->timestamps();
+            });
+        }
+
+        if (!Schema::hasTable('pedido_produto')) {
+            Schema::create('pedido_produto', function (Blueprint $table) {
+                //ESTRUTURA TABELA
+                $table->engine = 'InnoDB';
+                $table->charset = 'utf8mb4';
+                $table->collation = 'utf8mb4_general_ci';
+
+                //COLUNAS
+                $table->id();
+                $table->unsignedSmallInteger('pedido_id');
+                $table->unsignedSmallInteger('produto_id');
+                $table->integer('quantidade');
             });
         }
     }
 
     public function down()
     {
-        Schema::dropIfExists('eletrodomesticos');
-        Schema::dropIfExists('marcas');
+        Schema::dropIfExists('users');
+        Schema::dropIfExists('produtos');
+        Schema::dropIfExists('pedidos');
+        Schema::dropIfExists('pedido_produto');
     }
 };
