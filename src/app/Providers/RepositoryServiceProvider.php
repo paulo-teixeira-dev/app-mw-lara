@@ -2,18 +2,19 @@
 
 namespace App\Providers;
 
-use App\Interfaces\EletroRepositoryInterface;
-use App\Interfaces\MarcaRepositoryInterface;
-use App\Repositories\EletroRepository;
-use App\Repositories\MarcaRepository;
 use Illuminate\Support\ServiceProvider;
+/**----**/
+use App\Interfaces\AuthRepositoryInterface;
+use App\Repositories\AuthRepository;
+use App\Interfaces\UserRepositoryInterface;
+use App\Repositories\UserRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        $this->app->bind(EletroRepositoryInterface::class, EletroRepository::class);
-        $this->app->bind(MarcaRepositoryInterface::class, MarcaRepository::class);
+        $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
+        $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
     }
 
     public function boot()

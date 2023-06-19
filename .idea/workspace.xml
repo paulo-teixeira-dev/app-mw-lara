@@ -191,6 +191,7 @@
       <workItem from="1686838535884" duration="3297000" />
       <workItem from="1687118956424" duration="1566000" />
       <workItem from="1687122198695" duration="2407000" />
+      <workItem from="1687178560111" duration="5873000" />
     </task>
     <servers />
   </component>
@@ -210,6 +211,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="474" y="210" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1687180331350">
+      <screen x="0" y="0" width="1536" height="816" />
+    </state>
+    <state x="474" y="210" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.816@0.0.1536.816" timestamp="1687180331350" />
     <state x="549" y="163" key="FileChooserDialogImpl" timestamp="1686841732753">
       <screen x="0" y="0" width="1536" height="816" />
     </state>
