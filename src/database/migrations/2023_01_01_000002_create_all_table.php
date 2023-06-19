@@ -36,8 +36,9 @@ return new class extends Migration {
                 //COLUNAS
                 $table->id();
                 $table->string('nome', 100);
-                $table->integer('preco');
+                $table->decimal('preco');
                 $table->integer('estoque');
+                $table->boolean('ativo')->default(true);
                 $table->timestamps();
             });
         }

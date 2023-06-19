@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProdutoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,14 +38,14 @@ Route::group(['prefix' => 'users', 'middleware' => 'auth:sanctum'], function () 
     Route::post('/store', [UserController::class, 'store']);
 });
 
-
-//Route::group(['prefix' => 'eletro'], function () {
-//    Route::get('/listing', [EletroController::class, 'listing']);
-//    Route::post('/store', [EletroController::class, 'store']);
-//    Route::get('/show/{id}', [EletroController::class, 'show']);
-//    Route::put('/update/{id}', [EletroController::class, 'update']);
-//    Route::delete('/delete/{id}', [EletroController::class, 'delete']);
-//});
+/** produtos **/
+Route::group(['prefix' => 'produto','middleware' => 'auth:sanctum'], function () {
+    Route::get('/listing', [ProdutoController::class, 'listing']);
+    Route::post('/store', [ProdutoController::class, 'store']);
+    Route::get('/show/{id}', [ProdutoController::class, 'show']);
+    Route::put('/update/{id}', [ProdutoController::class, 'update']);
+    Route::delete('/delete/{id}', [ProdutoController::class, 'delete']);
+});
 //
 //Route::group(['prefix' => 'marca'], function () {
 //    Route::get('/listing', [MarcaController::class, 'listing']);

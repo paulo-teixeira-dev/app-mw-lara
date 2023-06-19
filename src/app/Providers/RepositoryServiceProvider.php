@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Interfaces\ProdutoRepositoryInterface;
+use App\Repositories\ProdutoRepository;
 use Illuminate\Support\ServiceProvider;
 /**----**/
 use App\Interfaces\AuthRepositoryInterface;
@@ -15,6 +17,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(AuthRepositoryInterface::class, AuthRepository::class);
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
+        $this->app->bind(ProdutoRepositoryInterface::class, ProdutoRepository::class);
     }
 
     public function boot()

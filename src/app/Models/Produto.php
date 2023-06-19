@@ -10,7 +10,7 @@ class Produto extends Model
     use HasFactory;
 
     protected $table = 'produtos';
-    protected $fillable = ['nome', 'preco', 'estoque'];
+    protected $fillable = ['nome', 'preco', 'estoque', 'ativo'];
 
     protected function serializeDate(\DateTimeInterface $date)
     {

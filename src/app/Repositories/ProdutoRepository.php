@@ -2,38 +2,39 @@
 
 namespace App\Repositories;
 
+use App\Helpers\Api as API;
+use App\Interfaces\ProdutoRepositoryInterface;
+use App\Models\Produto;
 use Illuminate\Support\Facades\DB;
-use App\Helpers\Api as ApiHelper;
-use App\Interfaces\EletroRepositoryInterface;
-use App\Models\Eletro;
 
-class EletroRepository implements EletroRepositoryInterface
+class ProdutoRepository implements ProdutoRepositoryInterface
 {
     private $apiHelper;
-    private $eletroModel;
+    private $produtoModel;
 
-    public function __construct(ApiHelper $apiHelper, Eletro $eletroModel)
+    public function __construct(API $apiHelper, Produto $produtoModel)
     {
         $this->apiHelper = $apiHelper;
-        $this->eletroModel = $eletroModel;
+        $this->produtoModel = $produtoModel;
     }
 
     public function listing()
     {
         try {
-            $eletro = $this->eletroModel->all();
-            return $this->apiHelper->response($eletro);
+            $produto = $this->produtoModel->all();
+            return $this->apiHelper->response($produto);
         } catch (\Exception $e) {
             return $this->apiHelper->response($e->getMessage(), 'er', null, 500);
         }
     }
 
-    public function store($eletro)
+    public function store($request)
     {
         DB::beginTransaction();
         try {
             /** criação **/
-            $this->eletroModel->create($eletro);
+            $this->produtoModel->create($request);
+
             DB::commit();
             return $this->apiHelper->response();
         } catch (\Exception $e) {
@@ -45,9 +46,9 @@ class EletroRepository implements EletroRepositoryInterface
     public function show($id)
     {
         try {
-            $eletro = $this->eletroModel->where('id', $id)->with(['Marca'])->first();
-            if ($eletro)
-                return $this->apiHelper->response($eletro);
+            $produto = $this->produtoModel->where('id', $id)->first();
+            if ($produto)
+                return $this->apiHelper->response($produto);
             else
                 return $this->apiHelper->response(null, 'nf');
         } catch (\Exception $e) {
@@ -55,17 +56,17 @@ class EletroRepository implements EletroRepositoryInterface
         }
     }
 
-    public function update($eletro, $id)
+    public function update($prod, $id)
     {
         DB::beginTransaction();
         try {
             /** atualização **/
-            $eletroUpdate = $this->eletroModel->find($id);
+            $produto = $this->produtoModel->find($id);
 
-            if (!$eletroUpdate)
+            if (!$produto)
                 return $this->apiHelper->response(null, 'nf');
 
-            $eletroUpdate->update($eletro);
+            $produto->update($prod);
             DB::commit();
             return $this->apiHelper->response();
         } catch (\Exception $e) {
@@ -78,13 +79,13 @@ class EletroRepository implements EletroRepositoryInterface
     {
         DB::beginTransaction();
         try {
-            /** delete **/
-            $eletro = $this->eletroModel->find($id);
+            /** atualização **/
+            $produto = $this->produtoModel->find($id);
 
-            if (!$eletro)
+            if (!$produto)
                 return $this->apiHelper->response(null, 'nf');
 
-            $eletro->delete();
+            $produto->update(['ativo' => false]);
             DB::commit();
             return $this->apiHelper->response();
         } catch (\Exception $e) {
